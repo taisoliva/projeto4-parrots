@@ -1,7 +1,31 @@
 let face ;
 let verso ;
 
-const baralho = ["bobrossparrot.gif", "explodyparrot.gif"];
+let condicaoInicialCartas = false;
+
+let quantidadeDeCartas = prompt("Só pode inserir números pares de 4 a 14. \n Quantas cartas quer jogar:");
+
+while(condicaoInicialCartas === false){
+
+    if((quantidadeDeCartas % 2 == 0) && (quantidadeDeCartas > 3) && (quantidadeDeCartas < 15) ){
+        condicaoInicialCartas = true;
+    }else{
+        quantidadeDeCartas = prompt("Só pode inserir números pares de 4 a 14. \n Quantas cartas quer jogar:");
+    }
+}
+
+montarCartas(quantidadeDeCartas);
+
+function montarCartas (valorEscolhido){
+
+    const local = document.querySelector("tela");
+    local.innerHTML = "<div></div>";
+}
+
+
+
+
+const baralho = ["bobrossparrot.gif", "explodyparrot.gif", ];
 function selecionarCarta(carta){
     
     face = carta.querySelector ("div:nth-child(1)");
