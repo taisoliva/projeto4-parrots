@@ -42,8 +42,27 @@ main{
     background-color: #A7E9AF;
     border: 1px solid #99CEA8;
     border-radius: 5px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.7);
 
     position: relative;
+}
+
+.face {
+    backface-visibility: hidden;
+    transition: all 0.5s;
+    transform-style: preserve-3d;
+}
+
+.back-face {
+    transform: rotateY(180deg);
+  }
+
+  .vira-verso {
+    transform: rotateY(0deg);
+}
+
+  .vira-frente {
+   transform: rotateY(-180deg);
 }
 
 main img{
