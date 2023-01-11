@@ -1,16 +1,20 @@
 let face ;
 let verso ;
 
+const baralho = ["bobrossparrot.gif", "explodyparrot.gif"];
 function selecionarCarta(carta){
     
     face = carta.querySelector ("div:nth-child(1)");
     verso = carta.querySelector ("div:nth-child(2)");
 
-   carta.classList.add("active");
-   face.classList.add("vira-frente");
-   verso.classList.add("vira-verso");
+    const imagem = verso.querySelector("img");
+    imagem.setAttribute("src"," Imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/" + baralho[1]);
 
-   unflipCards()
+    carta.classList.add("active");
+    face.classList.add("vira-frente");
+    verso.classList.add("vira-verso");
+
+    unflipCards()
 
 }
 
