@@ -18,8 +18,20 @@ montarCartas(quantidadeDeCartas);
 
 function montarCartas (valorEscolhido){
 
-    const local = document.querySelector("tela");
-    local.innerHTML = "<div></div>";
+  const local = document.querySelector(".tela");
+  console.log(local);
+
+  for(let i = 0; i<valorEscolhido; i++){
+    local.innerHTML = local.innerHTML + ` <div onclick="selecionarCarta(this)" class="card">
+                                                    <div class="face">
+                                                        <img src="Imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/back.png" alt="">
+                                                    </div>
+
+                                                    <div class="back-face face">
+                                                            <img src="Imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/desktop.png" alt="">
+                                                    </div>
+                                            </div> `
+  }
 }
 
 

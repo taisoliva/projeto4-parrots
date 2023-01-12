@@ -29,7 +29,8 @@ main{
 
     background-color: red;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
     align-items: center;
     margin-left: 122px;
     margin-right: 122px;
@@ -43,6 +44,9 @@ main{
     border: 1px solid #99CEA8;
     border-radius: 5px;
     box-shadow: 1px 1px 1px rgba(0,0,0,.7);
+    
+
+    margin:10px; 
 
     position: relative;
 }
