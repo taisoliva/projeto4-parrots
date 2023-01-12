@@ -17,6 +17,10 @@ let condicaoInicialCartas = false;
 
 let quantidadeDeCartas = prompt("Só pode inserir números pares de 4 a 14. \n Quantas cartas quer jogar:");
 
+let acertos = 0;
+
+let jogadas = 0;
+
 while(condicaoInicialCartas === false){
 
     if((quantidadeDeCartas % 2 == 0) && (quantidadeDeCartas > 3) && (quantidadeDeCartas < 15) ){
@@ -61,12 +65,12 @@ function montarCartas (valorEscolhido){
 
 function selecionarCarta(carta){
 
-    carta.classList.add("active");
-
     // impedir que outras cartas sejam viradas.
     if(travar === true){
         return;
     }
+
+    jogadas++;
 
     if(cartaVirada === false){
         cartaVirada = true;
@@ -78,6 +82,7 @@ function selecionarCarta(carta){
         facePrimeira.classList.add("vira-frente");
         versoPrimeira.classList.add("vira-verso");
 
+        
         return;
     }
 
@@ -115,13 +120,24 @@ function checkMatch (){
     let imagemSegunda = versoSegunda.querySelector("img").src;
 
     if(imagemPrimeira === imagemSegunda){
-        console.log("são iguais");
+        
+        acertos++;
 
         primeiraCarta.removeAttribute("onclick");
         segundaCarta.removeAttribute("onclick");
-        
+
         travar = false;
+
+        if((2*acertos) == quantidadeDeCartas){
+
+            setTimeout(() => {
+                alert(`Você ganhou em ${jogadas} jogadas!`);
+                window.location.reload();
+            }, 1000);
+            
+        }
         return;
+
     } else{
         unflipCards();
     }
