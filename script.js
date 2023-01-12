@@ -11,7 +11,7 @@ let cartaVirada = false;
 
 let travar = false;
 
-const baralho = ["bobrossparrot.gif", "explodyparrot.gif", ];
+const baralho = [];
 
 let condicaoInicialCartas = false;
 
@@ -28,19 +28,32 @@ while(condicaoInicialCartas === false){
 
 montarCartas(quantidadeDeCartas);
 
+function comparador() { 
+	return Math.random() - 0.5; 
+}
+
 function montarCartas (valorEscolhido){
 
-  const local = document.querySelector(".tela");
-  console.log(local);
+    for(let i = 0; i<(valorEscolhido/2) ; i++){
+        baralho.push("parrot"+(i+1));
+        baralho.push("parrot"+((valorEscolhido/2) - i));
+    }
+
+    baralho.sort(comparador) // embaralhar cartas;
+
+    console.log();
+
+    const local = document.querySelector(".tela");
+    console.log(local);
 
   for(let i = 0; i<valorEscolhido; i++){
     local.innerHTML = local.innerHTML + ` <div onclick="selecionarCarta(this)" class="card">
                                                     <div class="face">
-                                                        <img src="Imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/back.png" alt="">
+                                                        <img src="Imagens/back.png" alt="">
                                                     </div>
 
                                                     <div class="back-face face">
-                                                            <img src="Imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/desktop.png" alt="">
+                                                            <img src="Imagens/${baralho[i]}.gif" alt="">
                                                     </div>
                                             </div> `
   }
@@ -104,9 +117,13 @@ function checkMatch (){
     if(imagemPrimeira === imagemSegunda){
         console.log("são iguais");
 
-        /*primeiraCarta.removeEventListener('click', selecionarCarta);
-        segundaCarta.removeEventListener('click', selecionarCarta);*/
+        primeiraCarta.removeAttribute("onclick");
+        segundaCarta.removeAttribute("onclick");
+        
+        travar = false;
         return;
+    } else{
+        unflipCards();
     }
 
 
@@ -114,8 +131,12 @@ function checkMatch (){
 
 function unflipCards(){
     setTimeout(() =>{
-        face.classList.remove("vira-frente");
-        verso.classList.remove("vira-verso");
+
+        travar = false;
+        facePrimeira.classList.remove("vira-frente");
+        versoPrimeira.classList.remove("vira-verso");
+        faceSegunda.classList.remove("vira-frente");
+        versoSegunda.classList.remove("vira-verso");
 
     }, 1500);
 }
