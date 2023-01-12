@@ -1,5 +1,17 @@
-let face ;
-let verso ;
+let facePrimeira ;
+let versoPrimeira ;
+
+let faceSegunda ;
+let versoSegunda ;
+
+let primeiraCarta;
+let segundaCarta;
+
+let cartaVirada = false;
+
+let travar = false;
+
+const baralho = ["bobrossparrot.gif", "explodyparrot.gif", ];
 
 let condicaoInicialCartas = false;
 
@@ -34,23 +46,69 @@ function montarCartas (valorEscolhido){
   }
 }
 
-
-
-
-const baralho = ["bobrossparrot.gif", "explodyparrot.gif", ];
 function selecionarCarta(carta){
-    
-    face = carta.querySelector ("div:nth-child(1)");
-    verso = carta.querySelector ("div:nth-child(2)");
-
-    const imagem = verso.querySelector("img");
-    imagem.setAttribute("src"," Imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/" + baralho[1]);
 
     carta.classList.add("active");
-    face.classList.add("vira-frente");
-    verso.classList.add("vira-verso");
 
-    unflipCards()
+    // impedir que outras cartas sejam viradas.
+    if(travar === true){
+        return;
+    }
+
+    if(cartaVirada === false){
+        cartaVirada = true;
+        primeiraCarta = carta; // dados da primeira carta virada
+
+        facePrimeira = primeiraCarta.querySelector("div:nth-child(1)");
+        versoPrimeira = primeiraCarta.querySelector("div:nth-child(2)");
+
+        facePrimeira.classList.add("vira-frente");
+        versoPrimeira.classList.add("vira-verso");
+
+        return;
+    }
+
+    segundaCarta = carta;
+
+    //verifica se a primeira carta foi clicada duas vezes.
+    if(segundaCarta === primeiraCarta){
+        return;
+    }
+
+    travar = true; // quando a segunda carta é desvirada impede que outras sejam viradas;
+
+    faceSegunda = segundaCarta.querySelector("div:nth-child(1)");
+    versoSegunda = segundaCarta.querySelector("div:nth-child(2)");
+
+    faceSegunda.classList.add("vira-frente");
+    versoSegunda.classList.add("vira-verso");
+
+
+    cartaVirada = false; 
+
+
+    console.log(primeiraCarta);
+    console.log(segundaCarta);
+
+
+    checkMatch()
+
+}
+
+
+function checkMatch (){
+
+    let imagemPrimeira = versoPrimeira.querySelector("img").src;
+    let imagemSegunda = versoSegunda.querySelector("img").src;
+
+    if(imagemPrimeira === imagemSegunda){
+        console.log("são iguais");
+
+        /*primeiraCarta.removeEventListener('click', selecionarCarta);
+        segundaCarta.removeEventListener('click', selecionarCarta);*/
+        return;
+    }
+
 
 }
 
@@ -58,5 +116,6 @@ function unflipCards(){
     setTimeout(() =>{
         face.classList.remove("vira-frente");
         verso.classList.remove("vira-verso");
+
     }, 1500);
 }
