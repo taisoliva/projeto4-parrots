@@ -21,6 +21,8 @@ let acertos = 0;
 
 let jogadas = 0;
 
+let tempo = 0;
+
 while(condicaoInicialCartas === false){
 
     if((quantidadeDeCartas % 2 == 0) && (quantidadeDeCartas > 3) && (quantidadeDeCartas < 15) ){
@@ -28,6 +30,14 @@ while(condicaoInicialCartas === false){
     }else{
         quantidadeDeCartas = prompt("Só pode inserir números pares de 4 a 14. \n Quantas cartas quer jogar:");
     }
+}
+
+constante = setInterval(iniciaTempo,1000);
+
+function iniciaTempo(){
+    local = document.querySelector(".relogio");
+    tempo++;
+    local.innerHTML = tempo;
 }
 
 montarCartas(quantidadeDeCartas);
@@ -131,8 +141,30 @@ function checkMatch (){
         if((2*acertos) == quantidadeDeCartas){
 
             setTimeout(() => {
-                alert(`Você ganhou em ${jogadas} jogadas!`);
-                window.location.reload();
+                clearInterval(constante);
+                alert(`Você ganhou em ${jogadas} jogadas! A duração do jogo foi de ${tempo} segundos!`);
+                let confirma = prompt("Deseja reiniciar a partida? Digite sim ou não");
+                let verifica = true;
+                while(verifica === true)
+                {
+                    if(confirma === "sim"){
+                        window.location.reload();
+                        verifica = false;
+                    }
+                    else if(confirma === "não"){
+                        verifica = false;
+                        return;
+                    }
+
+                    else{
+                        confirma = prompt("Deseja reiniciar a partida? Digite sim ou não");
+                    }
+                    
+
+                    console.log(verifica);
+                }
+                 
+               
             }, 1000);
             
         }
