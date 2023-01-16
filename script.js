@@ -15,7 +15,7 @@ const baralho = [];
 
 let condicaoInicialCartas = false;
 
-let quantidadeDeCartas = prompt("Só pode inserir números pares de 4 a 14. \n Quantas cartas quer jogar:");
+let quantidadeDeCartas = prompt("Só pode inserir números pares de 4 a 14. \n Digite quantas cartas você quer jogar:");
 
 let acertos = 0;
 
@@ -51,13 +51,13 @@ function montarCartas (valorEscolhido){
     console.log(local);
 
   for(let i = 0; i<valorEscolhido; i++){
-    local.innerHTML = local.innerHTML + ` <div onclick="selecionarCarta(this)" class="card">
+    local.innerHTML = local.innerHTML + ` <div data-test="card" onclick="selecionarCarta(this)" class="card">
                                                     <div class="face">
-                                                        <img src="Imagens/back.png" alt="">
+                                                        <img data-test="face-down-image" src="Imagens/back.png" alt="">
                                                     </div>
-
+ 
                                                     <div class="back-face face">
-                                                            <img src="Imagens/${baralho[i]}.gif" alt="">
+                                                            <img data-test="face-up-image" src="Imagens/${baralho[i]}.gif" alt="">
                                                     </div>
                                             </div> `
   }
