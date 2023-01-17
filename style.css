@@ -100,4 +100,12 @@ main img{
     main{
         margin-top: 100px ;
     }
+
+    .relogio{
+        padding-left:30px;
+    }
+
+    .titulo{
+        padding-left: 150px;
+    }
 }
